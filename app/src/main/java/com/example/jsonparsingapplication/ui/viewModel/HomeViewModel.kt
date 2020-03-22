@@ -1,6 +1,7 @@
 package com.example.jsonparsingapplication.ui.viewModel
 
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.jsonparsingapplication.domain.HomeUseCase
 import androidx.lifecycle.viewModelScope
@@ -17,6 +18,8 @@ class HomeViewModel constructor(var homeUseCase: HomeUseCase): ViewModel() {
         fetchFactsList()
     }
 
+    val factsList = MutableLiveData<FactsDTO>()
+
     public fun fetchFactsList() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
@@ -29,6 +32,7 @@ class HomeViewModel constructor(var homeUseCase: HomeUseCase): ViewModel() {
 
                         override fun onSuccess(result: FactsDTO) {
                             Log.d("TAG","success is called "+result)
+                            factsList.postValue(result)
                         }
 
                     }
