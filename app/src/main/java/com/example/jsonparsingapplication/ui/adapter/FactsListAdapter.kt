@@ -9,7 +9,7 @@ import com.example.jsonparsingapplication.R
 import com.example.jsonparsingapplication.data.model.RowsDTO
 import com.example.jsonparsingapplication.databinding.HolderFactsBinding
 
-class FactsListAdapter constructor(var factsList : ArrayList<RowsDTO>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class FactsListAdapter constructor(private var factsList : List<RowsDTO>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val holderPostBinding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context), R.layout.holder_facts, parent, false

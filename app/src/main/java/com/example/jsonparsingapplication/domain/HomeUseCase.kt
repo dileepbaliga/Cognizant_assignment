@@ -7,7 +7,7 @@ import com.example.jsonparsingapplication.domain.usecase.base.UseCase
 
 class HomeUseCase constructor(
     var factsRepository: FactsRepository,
-    apiErrorHandler: ApiErrorHandler
+    apiErrorHandler: ApiErrorHandler?
 ) : UseCase<FactsDTO, Any?>(apiErrorHandler) {
     override suspend fun run(params: Any?): FactsDTO {
         return factsRepository.fetchFactsList()
