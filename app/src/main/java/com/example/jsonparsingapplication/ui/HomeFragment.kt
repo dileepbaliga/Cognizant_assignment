@@ -27,6 +27,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initializeSwipeRefreshLayout()
         homeViewModel.factsList.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 setAdapter(it)
@@ -36,5 +37,12 @@ class HomeFragment : Fragment() {
 
     private fun setAdapter(result: FactsDTO) {
         home_recycler_view.adapter = FactsListAdapter(result.rowsDto)
+    }
+
+    private fun initializeSwipeRefreshLayout() {
+        swiperefresh_items.setOnRefreshListener {
+            swiperefresh_items.isRefreshing = false
+            homeViewModel.fetchFactsList()
+        }
     }
 }

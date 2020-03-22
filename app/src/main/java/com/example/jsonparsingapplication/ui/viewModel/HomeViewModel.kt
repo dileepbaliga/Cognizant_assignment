@@ -20,7 +20,7 @@ class HomeViewModel constructor(var homeUseCase: HomeUseCase): ViewModel() {
 
     val factsList = MutableLiveData<FactsDTO>()
 
-    public fun fetchFactsList() {
+    fun fetchFactsList() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 homeUseCase.invoke(viewModelScope,
