@@ -7,6 +7,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -21,7 +22,6 @@ val NetworkModule = module {
 
     single { createMoshiConverterFactory() }
 
-    single { createMoshi() }
 }
 
 fun createOkHttpClient(): OkHttpClient {
@@ -37,12 +37,8 @@ fun createRetrofit(okHttpClient: OkHttpClient, url: String): Retrofit {
     return Retrofit.Builder()
         .baseUrl(url)
         .client(okHttpClient)
-        .addConverterFactory(MoshiConverterFactory.create()).build()
-}
-
-
-fun createMoshi(): Moshi {
-    return Moshi.Builder().build()
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
 }
 
 fun createMoshiConverterFactory(): MoshiConverterFactory {

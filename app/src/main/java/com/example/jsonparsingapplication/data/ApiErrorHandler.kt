@@ -11,6 +11,6 @@ import java.net.SocketTimeoutException
  * depending on what exception returns a [ErrorModel]
  *
  * */
-class ApiErrorHandle {
+class ApiErrorHandler {
 
 }

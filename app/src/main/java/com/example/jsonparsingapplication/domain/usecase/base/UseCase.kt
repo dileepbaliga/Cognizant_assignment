@@ -1,12 +1,12 @@
 package com.example.jsonparsingapplication.domain.usecase.base
 
-import com.example.jsonparsingapplication.data.ApiErrorHandle
+import com.example.jsonparsingapplication.data.ApiErrorHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-abstract class UseCase<Type, in Params>(private val apiErrorHandle: ApiErrorHandle?) where Type : Any {
+abstract class UseCase<Type, in Params>(private val apiErrorHandler: ApiErrorHandler?) where Type : Any {
 
     abstract suspend fun run(params: Params? = null): Type
 
@@ -21,7 +21,7 @@ abstract class UseCase<Type, in Params>(private val apiErrorHandle: ApiErrorHand
                 try {
                     onResult.onSuccess(it)
                 } catch (e: HttpException) {
-                    //onResult.onError(apiErrorHandle?.traceErrorException(e))
+                    //onResult.onError(apiErrorHandler?.traceErrorException(e))
                 }
             }
         }
