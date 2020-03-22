@@ -21,7 +21,7 @@ abstract class UseCase<Type, in Params>(private val apiErrorHandler: ApiErrorHan
                 try {
                     onResult.onSuccess(it)
                 } catch (e: HttpException) {
-                    //onResult.onError(apiErrorHandler?.traceErrorException(e))
+                    onResult.onError(apiErrorHandler?.traceErrorException(e))
                 }
             }
         }

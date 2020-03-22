@@ -1,8 +1,6 @@
 package com.example.jsonparsingapplication.data
 
 import com.example.jsonparsingapplication.data.model.ErrorModel
-import okhttp3.ResponseBody
-import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 
@@ -13,4 +11,22 @@ import java.net.SocketTimeoutException
  * */
 class ApiErrorHandler {
 
+    fun traceErrorException(throwable: Throwable?): ErrorModel {
+        val errorModel: ErrorModel? = when (throwable) {
+            // handle api call timeout error
+            is SocketTimeoutException -> {
+                ErrorModel(throwable.message, ErrorModel.ErrorStatus.TIMEOUT)
+            }
+
+            // handle connection error
+            is IOException -> {
+                ErrorModel(throwable.message, ErrorModel.ErrorStatus.NO_CONNECTION)
+            }
+            else -> {
+                ErrorModel(throwable?.message, ErrorModel.ErrorStatus.UNAUTHORIZED)
+
+            }
+        }
+        return errorModel ?: ErrorModel("No Defined Error!", 0, ErrorModel.ErrorStatus.BAD_RESPONSE)
+    }
 }

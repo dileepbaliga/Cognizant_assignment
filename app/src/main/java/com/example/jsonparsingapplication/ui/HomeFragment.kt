@@ -10,6 +10,7 @@ import com.example.jsonparsingapplication.R
 import com.example.jsonparsingapplication.data.model.FactsDTO
 import com.example.jsonparsingapplication.ui.adapter.FactsListAdapter
 import com.example.jsonparsingapplication.ui.viewModel.HomeViewModel
+import com.example.jsonparsingapplication.utils.isNetworkAvailable
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -28,11 +29,24 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeSwipeRefreshLayout()
+        getFactsList()
         homeViewModel.factsList.observe(viewLifecycleOwner, Observer {
             if (it != null) {
                 setAdapter(it)
             }
         })
+        homeViewModel.errorMessage.observe(viewLifecycleOwner, Observer {
+            error_txt.text = it
+        })
+    }
+
+    fun getFactsList() {
+        if (isNetworkAvailable()) {
+            homeViewModel.fetchFactsList()
+        } else {
+            error_txt.setText(R.string.no_internet_found_txt)
+        }
+
     }
 
     private fun setAdapter(result: FactsDTO) {
@@ -42,7 +56,7 @@ class HomeFragment : Fragment() {
     private fun initializeSwipeRefreshLayout() {
         swiperefresh_items.setOnRefreshListener {
             swiperefresh_items.isRefreshing = false
-            homeViewModel.fetchFactsList()
+            getFactsList()
         }
     }
 }

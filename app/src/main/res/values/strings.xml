@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">JsonParsingApplication</string>
+    <string name="no_internet_found_txt">No internet found</string>
 </resources>

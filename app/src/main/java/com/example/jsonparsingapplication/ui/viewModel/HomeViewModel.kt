@@ -14,11 +14,9 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel constructor(var homeUseCase: HomeUseCase): ViewModel() {
 
-    init {
-        fetchFactsList()
-    }
-
     val factsList = MutableLiveData<FactsDTO>()
+
+    var errorMessage = MutableLiveData<String>()
 
     fun fetchFactsList() {
         viewModelScope.launch {
@@ -27,11 +25,10 @@ class HomeViewModel constructor(var homeUseCase: HomeUseCase): ViewModel() {
                     null,
                     object : UseCaseResponse<FactsDTO> {
                         override fun onError(errorModel: ErrorModel?) {
-                            Log.d("TAG","error is called")
+                            errorMessage.postValue(errorModel?.message)
                         }
 
                         override fun onSuccess(result: FactsDTO) {
-                            Log.d("TAG","success is called "+result)
                             factsList.postValue(result)
                         }
 
