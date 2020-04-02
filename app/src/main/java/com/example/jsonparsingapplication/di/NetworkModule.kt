@@ -18,7 +18,6 @@ val NetworkModule = module {
 
     single { createOkHttpClient() }
 
-
 }
 
 fun createOkHttpClient(): OkHttpClient {
