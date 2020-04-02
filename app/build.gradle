@@ -74,4 +74,7 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
 
     implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mokito_version"
+
+    implementation "androidx.test.espresso:espresso-core:3.1.1"
+    implementation "androidx.test:rules:1.1.1"
 }

@@ -1,9 +1,7 @@
 package com.example.jsonparsingapplication
 
-import com.example.jsonparsingapplication.data.ApiErrorHandler
 import com.example.jsonparsingapplication.data.model.ErrorModel
 import com.example.jsonparsingapplication.data.model.FactsDTO
-import com.example.jsonparsingapplication.data.model.RowsDTO
 import com.example.jsonparsingapplication.data.repository.FactsRepository
 import com.example.jsonparsingapplication.domain.HomeUseCase
 import com.example.jsonparsingapplication.domain.usecase.base.UseCaseResponse
