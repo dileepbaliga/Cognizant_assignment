@@ -26,12 +26,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="@dimen/padding_10x">
 
             <ImageView
                 android:id="@+id/facts_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="@dimen/image_size"
+                android:layout_height="@dimen/image_size"
                 avatar="@{facts.imageUrl}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent " />
@@ -40,7 +40,7 @@
                 android:id="@+id/facts_name_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/margin_20x"
                 android:text="@{facts.title}"
                 app:layout_constraintStart_toEndOf="@+id/facts_img"
                 app:layout_constraintTop_toTopOf="parent"
@@ -51,7 +51,7 @@
                 android:id="@+id/restaurant_address_txt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="@dimen/margin_20x"
                 android:text="@{facts.description}"
                 app:layout_constraintStart_toEndOf="@+id/facts_img"
                 app:layout_constraintTop_toBottomOf="@+id/facts_name_txt"
